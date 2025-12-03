@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Welcome Page
+{% endblock %}
+
+{% block body %}
+	<h1>Hello, here your notes</h1>
+	{{ form_start(form) }}
+	{{ form_errors(form) }}
+
+	{{ form_row(form.title) }}
+	{{ form_row(form.body) }}
+
+	<button type="submit" class="btn">Create Note</button>
+
+	{{ form_end(form) }}
+
+	{% if notes|length < 1 %}
+		<p>Create your first note!</p>
+
+
+	{% else %}
+		{% for note in notes %}
+			<li>{{note.title}}</li>
+			<li>{{note.bodyHtml|raw}}</li>
+		{% endfor %}
+	{% endif %}
+
+{% endblock %}
+
